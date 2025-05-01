@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Explorer - Interactive JavaScript Demo</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><span class="highlight">Space</span> Explorer</h1>
+            <p>Press the <kbd>S</kbd> key for a surprise! Double-click the title for another secret!</p>
+        </header>
+
+        <div class="control-panel">
+            <button id="theme-toggle" class="btn">
+                <i class="fas fa-moon"></i> Dark Mode
+            </button>
+            <div class="hidden-message" id="key-message">
+                <i class="fas fa-star"></i> Great job finding the secret!
+            </div>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="gallery">Gallery</button>
+            <button class="tab-btn" data-tab="facts">Space Facts</button>
+            <button class="tab-btn" data-tab="join">Join Mission</button>
+        </div>
+
+        <!-- Gallery Tab -->
+        <div class="tab-content active" id="gallery">
+            <h2>Space Gallery</h2>
+            <div class="gallery-container">
+                <button class="gallery-nav prev"><i class="fas fa-chevron-left"></i></button>
+                <div class="gallery-view">
+                    <img src="https://images.nasa.gov/images/as11-40-5874~orig.jpg" alt="The Moon" class="gallery-img">
+                    <div class="caption">The Moon - Earth's natural satellite</div>
+                </div>
+                <button class="gallery-nav next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="gallery-dots">
+                <span class="dot active" data-index="0"></span>
+                <span class="dot" data-index="1"></span>
+                <span class="dot" data-index="2"></span>
+                <span class="dot" data-index="3"></span>
+            </div>
+        </div>
+
+        <!-- Facts Tab -->
+        <div class="tab-content" id="facts">
+            <h2>Fascinating Space Facts</h2>
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <i class="fas fa-planet-ringed"></i> Did you know Mars has two moons?
+                        <span class="accordion-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="accordion-content">
+                        Mars has two small moons, Phobos and Deimos. They are irregularly shaped and may be captured asteroids. Phobos orbits so close to Mars that it completes an orbit in less than 8 hours!
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <i class="fas fa-meteor"></i> Venus rotates backward
+                        <span class="accordion-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="accordion-content">
+                        Venus rotates on its axis in the opposite direction compared to most planets in our solar system. This means on Venus, the sun rises in the west and sets in the east!
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <i class="fas fa-star"></i> Saturn could float in water
+                        <span class="accordion-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="accordion-content">
+                        Saturn is so light that if you placed it in a giant bathtub, it would float! Its density is lower than water, with an average density of about 0.687 grams per cubic centimeter.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Join Mission Tab -->
+        <div class="tab-content" id="join">
+            <h2>Join Our Space Mission</h2>
+            <form id="registration-form">
+                <div class="form-group">
+                    <label for="name">Full Name <span class="required">*</span></label>
+                    <input type="text" id="name" name="name" required>
+                    <span class="validation-message" id="name-validation"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address <span class="required">*</span></label>
+                    <input type="email" id="email" name="email" required>
+                    <span class="validation-message" id="email-validation"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password <span class="required">*</span></label>
+                    <input type="password" id="password" name="password" required>
+                    <span class="validation-message" id="password-validation"></span>
+                    <div class="password-strength">
+                        <div class="strength-bar"></div>
+                    </div>
+                    <ul class="password-requirements">
+                        <li id="req-length"><i class="fas fa-times"></i> At least 8 characters</li>
+                        <li id="req-uppercase"><i class="fas fa-times"></i> At least 1 uppercase letter</li>
+                        <li id="req-lowercase"><i class="fas fa-times"></i> At least 1 lowercase letter</li>
+                        <li id="req-number"><i class="fas fa-times"></i> At least 1 number</li>
+                    </ul>
+                </div>
+                
+                <div class="form-group">
+                    <label for="mission">Choose Your Mission <span class="required">*</span></label>
+                    <select id="mission" name="mission" required>
+                        <option value="">-- Select a Mission --</option>
+                        <option value="mars">Mars Exploration</option>
+                        <option value="moon">Lunar Base</option>
+                        <option value="station">Space Station</option>
+                        <option value="asteroid">Asteroid Mining</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="terms" name="terms" required>
+                        I agree to the Terms and Conditions <span class="required">*</span>
+                    </label>
+                    <span class="validation-message" id="terms-validation"></span>
+                </div>
+                
+                <button type="submit" class="btn submit-btn">
+                    <i class="fas fa-rocket"></i> Launch Mission
+                </button>
+            </form>
+            
+            <div id="submission-feedback" class="hidden">
+                <i class="fas fa-check-circle"></i>
+                <h3>Registration Successful!</h3>
+                <p>Welcome aboard, explorer! Your mission details will be sent to your email.</p>
+            </div>
+        </div>
+
+        <footer>
+            <p>Created with <i class="fas fa-heart pulse"></i> for JavaScript Event Handling Assignment</p>
+            <p class="easter-egg">Hover here for a moment...</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
